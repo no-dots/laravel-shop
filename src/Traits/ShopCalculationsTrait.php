@@ -148,7 +148,7 @@ trait ShopCalculationsTrait
     /**
      * Runs calculations.
      */
-    private function runCalculations()
+    protected function runCalculations()
     {
         if (!empty($this->shopCalculations)) return $this->shopCalculations;
         $cacheKey = $this->calculationsCacheKey;
@@ -186,7 +186,7 @@ trait ShopCalculationsTrait
     /**
      * Resets cart calculations.
      */
-    private function resetCalculations ()
+    protected function resetCalculations ()
     {
         $this->shopCalculations = null;
         if (Config::get('shop.cache_calculations')) {
