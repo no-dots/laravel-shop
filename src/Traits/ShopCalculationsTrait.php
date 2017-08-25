@@ -97,7 +97,7 @@ trait ShopCalculationsTrait
     public function getTotalAttribute()
     {
         if (empty($this->shopCalculations)) $this->runCalculations();
-        return round($this->totalPrice + $this->totalTax + $this->totalShipping, 2);
+        return round($this->totalPrice + $this->totalShipping, 2);
     }
 
     /**
