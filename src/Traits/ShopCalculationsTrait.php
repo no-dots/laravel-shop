@@ -42,6 +42,18 @@ trait ShopCalculationsTrait
      *
      * @return float
      */
+    public function getTotalPriceExTaxAttribute()
+    {
+        if (empty($this->shopCalculations)) $this->runCalculations();
+        return round($this->shopCalculations->totalPrice - $this->shopCalculations->totalTax, 2);
+    }
+
+
+    /**
+     * Returns total price of all the items in cart.
+     *
+     * @return float
+     */
     public function getTotalPriceAttribute()
     {
         if (empty($this->shopCalculations)) $this->runCalculations();
@@ -56,7 +68,7 @@ trait ShopCalculationsTrait
     public function getTotalTaxAttribute()
     {
         if (empty($this->shopCalculations)) $this->runCalculations();
-        return round($this->shopCalculations->totalTax + ($this->totalPrice * Config::get('shop.tax')), 2);
+        return round($this->shopCalculations->totalTax, 2);
     }
 
     /**
@@ -85,8 +97,19 @@ trait ShopCalculationsTrait
     public function getTotalAttribute()
     {
         if (empty($this->shopCalculations)) $this->runCalculations();
-        return $this->totalPrice + $this->totalTax + $this->totalShipping;
+        return round($this->totalPrice + $this->totalTax + $this->totalShipping, 2);
     }
+
+    /**
+     * Returns formatted total price of all the items in cart.
+     *
+     * @return string
+     */
+    public function getDisplayTotalPriceExTaxAttribute()
+    {
+        return Shop::format($this->totalPriceExTax);
+    }
+
 
     /**
      * Returns formatted total price of all the items in cart.
@@ -162,8 +185,7 @@ trait ShopCalculationsTrait
             ->select([
                 DB::raw('sum(' . Config::get('shop.item_table') . '.quantity) as itemCount'),
                 DB::raw('sum(' . Config::get('shop.item_table') . '.price * ' . Config::get('shop.item_table') . '.quantity) as totalPrice'),
-                DB::raw('sum(' . Config::get('shop.item_table') . '.tax * ' . Config::get('shop.item_table') . '.quantity) as totalTax'),
-                DB::raw('sum(' . Config::get('shop.item_table') . '.shipping * ' . Config::get('shop.item_table') . '.quantity) as totalShipping')
+                DB::raw('sum((' . Config::get('shop.item_table') . '.price - (' . Config::get('shop.item_table') . '.price / (' . Config::get('shop.item_table') . '.tax + 1))) * ' . Config::get('shop.item_table') . '.quantity) as totalTax'),
             ])
             ->join(
                 Config::get('shop.item_table'),

@@ -207,8 +207,8 @@ class Item extends ShopItemModel
 The `Item` model has the following main attributes:
 - `id` &mdash; Item id.
 - `sku` &mdash; Stock Keeping Unit, aka your unique product identification within your store.
-- `price` &mdash; Item price.
-- `tax` &mdash; Item tax. Defaulted to 0.
+- `price` &mdash; Item price. (incl. tax)
+- `tax` &mdash; Item tax (in percentage). Defaulted to 0.
 - `shipping` &mdash; Item shipping. Defaulted to 0.
 - `currency` &mdash; Current version of package will use USD as default.
 - `quantity` &mdash; Item quantity.
