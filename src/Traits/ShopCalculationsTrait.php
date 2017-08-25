@@ -24,7 +24,7 @@ trait ShopCalculationsTrait
      * Property used to stored calculations.
      * @var array
      */
-    private $shopCalculations = null;
+    protected $shopCalculations = null;
 
     /**
      * Returns total amount of items in cart.
