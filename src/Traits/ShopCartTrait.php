@@ -295,7 +295,7 @@ trait ShopCartTrait
      *
      * @return mixed
      */
-    protected function getItem($sku)
+    public function getItem($sku)
     {
         $className  = Config::get('shop.item');
         $item       = new $className();
