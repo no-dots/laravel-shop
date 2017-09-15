@@ -46,9 +46,9 @@ class LaravelShopSeeder extends Seeder
 		    		'description' => 'Failed order. Payment or other process failed.',
 		    ],
 		    [
-		    		'code' 				=> 'canceled',
-		    		'name' 				=> 'Canceled',
-		    		'description' => 'Canceled order.',
+		    		'code' 				=> 'cancelled',
+		    		'name' 				=> 'Cancelled',
+		    		'description' => 'Cancelled order.',
 		    ],
 		]);
 

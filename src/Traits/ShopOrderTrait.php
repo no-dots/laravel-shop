@@ -184,13 +184,13 @@ trait ShopOrderTrait
     }
 
     /**
-     * Returns flag indicating if order is canceled.
+     * Returns flag indicating if order is cancelled.
      *
      * @return bool
      */
-    public function getIsCanceledAttribute()
+    public function getIsCancelledAttribute()
     {
-        return $this->attributes['statusCode'] == 'canceled';
+        return $this->attributes['statusCode'] == 'cancelled';
     }
 
     /**
